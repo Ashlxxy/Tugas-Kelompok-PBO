@@ -1,0 +1,22 @@
+/* Existing styles... */
+
+/* Playlist Hover Effect */
+.group:hover .group-hover-opacity-100 {
+    opacity: 1 !important;
+}
+
+.group {
+    cursor: pointer;
+}
+
+.text-accent,
+.text-accent:focus,
+.text-accent:active,
+.btn-link.text-accent,
+.btn-link.text-accent:focus {
+    /* Assuming previously this was just default or handled by Bootstrap */
+    color: #dc3545 !important;
+    /* Keeping text-accent red for mini-player active buttons (Shuffle/Repeat) if they used it before Step 820 */
+    /* Step 825 log showed this existed. */
+    text-decoration: none;
+}
