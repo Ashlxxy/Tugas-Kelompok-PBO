@@ -5,19 +5,31 @@
         <div class="container-xxl py-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="bg-dark-800 rounded p-3">
-                        <i class="bi bi-music-note-list display-4 text-accent"></i>
-                    </div>
+                    <c:choose>
+                        <c:when test="${not empty playlist.songs}">
+                            <c:forEach items="${playlist.songs}" var="song" begin="0" end="0">
+                                <img src="${pageContext.request.contextPath}${song.coverPath}"
+                                    class="rounded shadow object-fit-cover" width="120" height="120"
+                                    alt="${playlist.name}">
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="bg-dark-800 rounded d-flex align-items-center justify-content-center"
+                                style="width: 120px; height: 120px;">
+                                <i class="bi bi-music-note-list display-4 text-accent"></i>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                     <div>
                         <h2 class="mb-0 fw-bold">${playlist.name}</h2>
                         <p class="text-dark-300 mb-0">${playlist.songs.size()} Lagu</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
-                    <a href="${pageContext.request.contextPath}/songs?addToPlaylist=${playlist.id}"
-                        class="btn btn-outline-accent me-2">
+                    <button type="button" class="btn btn-outline-accent me-2" data-bs-toggle="modal"
+                        data-bs-target="#addSongModal">
                         <i class="bi bi-plus-lg me-1"></i>Tambah Lagu
-                    </a>
+                    </button>
                     <c:if test="${not empty playlist.songs}">
                         <button class="btn btn-accent me-2"
                             onclick="Player.playAll(document.querySelector('.list-group'))">
@@ -133,6 +145,95 @@
                     closeDeletePlaylistModal();
                 }
             });
+        </script>
+
+        <!-- Add Song Modal -->
+        <div class="modal fade" id="addSongModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content card-dark">
+                    <div class="modal-header border-dark-700">
+                        <h5 class="modal-title"><i class="bi bi-music-note-list me-2"></i>Tambah Lagu ke Playlist</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <!-- Search Bar -->
+                        <div class="p-3 border-bottom border-dark-700">
+                            <input type="text" id="songSearchInput" class="form-control form-control-dark"
+                                placeholder="Cari lagu..." onkeyup="filterSongs()">
+                        </div>
+
+                        <!-- Song List -->
+                        <div class="list-group list-group-flush" id="addSongList"
+                            style="max-height: 400px; overflow-y: auto;">
+                            <c:forEach items="${allSongs}" var="song">
+                                <!-- Check if song is already in playlist -->
+                                <c:set var="isAlreadyIn" value="false" />
+                                <c:forEach items="${playlist.songs}" var="pSong">
+                                    <c:if test="${pSong.id == song.id}">
+                                        <c:set var="isAlreadyIn" value="true" />
+                                    </c:if>
+                                </c:forEach>
+
+                                <c:if test="${!isAlreadyIn}">
+                                    <div class="list-group-item bg-dark-900 border-dark-700 p-3 d-flex justify-content-between align-items-center song-item"
+                                        data-title="${song.title.toLowerCase()}"
+                                        data-artist="${song.artist.toLowerCase()}">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img src="${pageContext.request.contextPath}${song.coverPath}"
+                                                class="rounded" width="40" height="40" alt="${song.title}">
+                                            <div>
+                                                <h6 class="mb-0 text-white">${song.title}</h6>
+                                                <small class="text-dark-300">${song.artist}</small>
+                                            </div>
+                                        </div>
+                                        <form action="${pageContext.request.contextPath}/playlists/${playlist.id}/songs"
+                                            method="POST">
+                                            <input type="hidden" name="songId" value="${song.id}">
+                                            <button type="submit" class="btn btn-sm btn-outline-accent">
+                                                <i class="bi bi-plus-lg"></i> Tambah
+                                            </button>
+                                        </form>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                            <!-- Empty State -->
+                            <div id="noSongsFound" class="text-center py-4 text-dark-300 d-none">
+                                <p>Tidak ada lagu ditemukan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function filterSongs() {
+                const input = document.getElementById('songSearchInput');
+                const filter = input.value.toLowerCase();
+                const list = document.getElementById('addSongList');
+                const items = list.getElementsByClassName('song-item');
+                let visibleCount = 0;
+
+                for (let i = 0; i < items.length; i++) {
+                    const title = items[i].getAttribute('data-title');
+                    const artist = items[i].getAttribute('data-artist');
+                    if (title.indexOf(filter) > -1 || artist.indexOf(filter) > -1) {
+                        items[i].style.display = "";
+                        visibleCount++;
+                    } else {
+                        items[i].style.display = "none";
+                    }
+                }
+
+                // Show/Hide empty state
+                const noSongs = document.getElementById('noSongsFound');
+                if (visibleCount === 0) {
+                    noSongs.classList.remove('d-none');
+                } else {
+                    noSongs.classList.add('d-none');
+                }
+            }
         </script>
 
         <jsp:include page="../layout/footer.jsp" />

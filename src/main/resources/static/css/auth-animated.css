@@ -18,6 +18,8 @@ body.auth-body {
     height: 600px;
     /* Taller for register form */
     background: #121212;
+    color: #ffffff;
+    /* Ensure text is white */
     /* Dark 900 */
     border: 1px solid #222;
     /* Dark 700 */

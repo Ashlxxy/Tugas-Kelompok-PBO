@@ -35,15 +35,28 @@ public class AuthController {
     }
 
     @GetMapping("/register")
-    public String showRegisterForm(Model model) {
-        model.addAttribute("user", new User());
-        return "auth/register";
+    public String showRegisterForm(org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("showRegister", true);
+        return "redirect:/login";
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user) {
-        userService.register(user);
-        return "redirect:/login";
+    public String register(@ModelAttribute User user, Model model,
+            org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
+        try {
+            userService.register(user);
+            redirectAttributes.addFlashAttribute("success", "Registrasi berhasil! Silakan login.");
+            return "redirect:/login";
+        } catch (RuntimeException e) {
+            String errorMessage = e.getMessage();
+            if (errorMessage == null || errorMessage.trim().isEmpty()) {
+                errorMessage = "Terjadi kesalahan saat registrasi.";
+            }
+            redirectAttributes.addFlashAttribute("error", errorMessage);
+            redirectAttributes.addFlashAttribute("registerError", true);
+            redirectAttributes.addFlashAttribute("user", user); // Keep filled data
+            return "redirect:/login";
+        }
     }
 
     @PostMapping("/logout")

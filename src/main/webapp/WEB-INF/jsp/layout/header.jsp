@@ -16,17 +16,6 @@
             <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
             <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
             <style>
-                /* Toast Container */
-                .toast-container {
-                    z-index: 1055 !important;
-                }
-
-                .toast {
-                    backdrop-filter: blur(10px);
-                    background-color: rgba(26, 26, 26, 0.95) !important;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-                }
-
                 /* Custom Animations */
                 .fade-in {
                     animation: fadeIn 0.8s ease-in-out;

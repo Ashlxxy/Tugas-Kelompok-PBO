@@ -10,8 +10,8 @@
                     <p class="lead text-dark-200 mt-3">Dengarkan lagu, baca deskripsi, simpan ke playlist, dan beri
                         apresiasi.</p>
                     <div class="d-flex gap-2 mt-2">
-                        <a class="btn btn-accent" href="${pageContext.request.contextPath}/songs"><i
-                                class="bi bi-collection-play me-1"></i>Lihat Semua Lagu</a>
+                        <a class="btn btn-accent" href="#descriptions"><i class="bi bi-card-text me-1"></i>Daftar
+                            Deskripsi Lagu</a>
                         <a class="btn btn-outline-accent" href="#popular"><i class="bi bi-fire me-1"></i>Populer</a>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
         </header>
 
         <div class="container-xxl pb-5">
-            <section id="popular" class="mt-4 fade-in" style="animation-delay: 0.4s;">
+            <section id="popular" class="mt-4 fade-in" style="animation-delay: 0.4s; scroll-margin-top: 100px;">
                 <div class="d-flex justify-content-between align-items-end mb-2">
                     <h3 class="mb-0">Paling Populer</h3>
                     <small class="text-dark-300">Berdasarkan like + pemutaran</small>
@@ -84,13 +84,13 @@
                 </div>
             </section>
 
-            <section id="descriptions" class="mt-5 fade-in" style="animation-delay: 0.6s;">
+            <section id="descriptions" class="mt-5 fade-in" style="animation-delay: 0.6s; scroll-margin-top: 100px;">
                 <h3 class="mb-4">Deskripsi Lagu</h3>
-                <div class="row g-4">
+                <div class="row g-4" id="description-container">
                     <c:choose>
                         <c:when test="${not empty songs}">
-                            <c:forEach items="${songs}" var="song" end="5">
-                                <div class="col-md-6 col-lg-4">
+                            <c:forEach items="${songs}" var="song" varStatus="status">
+                                <div class="col-md-6 col-lg-4 song-desc-item ${status.index >= 6 ? 'd-none' : ''}">
                                     <div class="card song p-3 h-100">
                                         <div class="d-flex align-items-start gap-3">
                                             <img src="${pageContext.request.contextPath}${song.coverPath}" width="96"
@@ -112,6 +112,44 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
+
+                <c:if test="${not empty songs && songs.size() > 6}">
+                    <div class="text-center mt-4">
+                        <button id="loadMoreBtn" class="btn btn-outline-accent rounded-pill px-4">
+                            Lihat Selengkapnya <i class="bi bi-chevron-down ms-1"></i>
+                        </button>
+                    </div>
+                    <script>
+                        const loadMoreBtn = document.getElementById('loadMoreBtn');
+                        let isExpanded = false;
+
+                        loadMoreBtn.addEventListener('click', function () {
+                            const hiddenItems = document.querySelectorAll('.song-desc-item');
+
+                            isExpanded = !isExpanded;
+
+                            hiddenItems.forEach((item, index) => {
+                                if (index >= 6) {
+                                    if (isExpanded) {
+                                        item.classList.remove('d-none');
+                                        item.classList.add('fade-in');
+                                    } else {
+                                        item.classList.add('d-none');
+                                        item.classList.remove('fade-in');
+                                    }
+                                }
+                            });
+
+                            if (isExpanded) {
+                                this.innerHTML = 'Lihat Lebih Sedikit <i class="bi bi-chevron-up ms-1"></i>';
+                            } else {
+                                this.innerHTML = 'Lihat Selengkapnya <i class="bi bi-chevron-down ms-1"></i>';
+                                // Optional: Scroll back to top of section if needed, but might be jarring
+                                // document.getElementById('descriptions').scrollIntoView({ behavior: 'smooth' });
+                            }
+                        });
+                    </script>
+                </c:if>
             </section>
         </div>
 

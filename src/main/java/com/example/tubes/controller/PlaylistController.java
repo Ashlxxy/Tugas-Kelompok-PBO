@@ -73,7 +73,7 @@ public class PlaylistController {
         // Ideally we should check if playlist belongs to user here
         playlistService.addSongToPlaylist(id, songId);
         session.setAttribute("success", "Lagu ditambahkan ke playlist!");
-        return "redirect:/songs?addToPlaylist=" + id;
+        return "redirect:/playlists/" + id;
     }
 
     @PostMapping("/{id}/songs/remove")

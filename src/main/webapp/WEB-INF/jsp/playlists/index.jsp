@@ -18,10 +18,23 @@
                                 <div class="card song p-2 h-100 hover-scale"
                                     onclick="window.location.href='${pageContext.request.contextPath}/playlists/${playlist.id}'"
                                     style="cursor: pointer;">
-                                    <div
-                                        class="ratio ratio-1x1 bg-dark-800 rounded mb-2 d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-music-note-list display-4 text-dark-700"></i>
-                                    </div>
+                                    <c:choose>
+                                        <c:when test="${not empty playlist.songs}">
+                                            <div class="ratio ratio-1x1 mb-2">
+                                                <c:forEach items="${playlist.songs}" var="song" begin="0" end="0">
+                                                    <img src="${pageContext.request.contextPath}${song.coverPath}"
+                                                        class="rounded w-100 h-100 object-fit-cover"
+                                                        alt="${playlist.name}">
+                                                </c:forEach>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div
+                                                class="ratio ratio-1x1 bg-dark-800 rounded mb-2 d-flex align-items-center justify-content-center">
+                                                <i class="bi bi-music-note-list display-4 text-dark-700"></i>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <div class="d-flex flex-column">
                                         <div class="fw-semibold text-truncate">${playlist.name}</div>
                                         <div class="small text-dark-300 text-truncate">${playlist.songs.size()} Lagu
@@ -36,7 +49,8 @@
                             <i class="bi bi-music-note-list display-1 mb-3 d-block text-dark-700"></i>
                             <p>Anda belum memiliki playlist.</p>
                             <a href="${pageContext.request.contextPath}/playlists/create"
-                                class="btn btn-outline-accent mt-2">Buat Sekarang</a>
+                                class="btn btn-outline-accent mt-2">Buat
+                                Sekarang</a>
                         </div>
                     </c:otherwise>
                 </c:choose>

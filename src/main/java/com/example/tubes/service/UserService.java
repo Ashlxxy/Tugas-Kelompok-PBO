@@ -14,6 +14,18 @@ public class UserService {
     private UserRepository userRepository;
 
     public User register(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new RuntimeException("Email sudah terdaftar");
+        }
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
+            // Generate username from email (part before @)
+            String email = user.getEmail();
+            if (email != null && email.contains("@")) {
+                user.setUsername(email.split("@")[0]);
+            } else {
+                user.setUsername(user.getName().replaceAll("\\s+", "").toLowerCase());
+            }
+        }
         // In a real app, password should be hashed here
         return userRepository.save(user);
     }

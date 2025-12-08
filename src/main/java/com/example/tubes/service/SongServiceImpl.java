@@ -16,7 +16,8 @@ public class SongServiceImpl implements ISongService {
 
     @Override
     public List<Song> getAllSongs() {
-        return songRepository.findAll();
+        return songRepository.findAll(
+                org.springframework.data.domain.Sort.by(org.springframework.data.domain.Sort.Direction.DESC, "id"));
     }
 
     @Override

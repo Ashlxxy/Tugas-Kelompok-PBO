@@ -13,6 +13,9 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String username;
 
+    @Column(nullable = false)
+    private String name;
+
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -44,13 +47,12 @@ public class User extends BaseEntity {
         this.username = username;
     }
 
-    // Alias name to username for JSP compatibility and registration form
     public String getName() {
-        return username;
+        return name;
     }
 
     public void setName(String name) {
-        this.username = name;
+        this.name = name;
     }
 
     public String getEmail() {

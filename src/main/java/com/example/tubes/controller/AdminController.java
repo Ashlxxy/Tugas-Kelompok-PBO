@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
     private ISongService songService;
@@ -48,13 +52,18 @@ public class AdminController {
         if (!isAdmin(session))
             return "redirect:/login";
 
+        logger.info("Attempting to upload song: {}", song.getTitle());
+        if (audioFile != null) {
+            logger.info("Audio file size: {}", audioFile.getSize());
+        }
+
         try {
             // Save Audio
             if (audioFile != null && !audioFile.isEmpty()) {
                 String audioFileName = audioFile.getOriginalFilename();
                 // External directory path from WebConfig
                 java.nio.file.Path audioPath = java.nio.file.Paths.get(
-                        "D:/Kuliah/SMST/SMST 5/PBO/Tubes/Tubes-Kelompok2-WebProPBO-main/Tubes_WebPro 0911/assets/songs/",
+                        "src/main/webapp/assets/songs/",
                         audioFileName);
                 // Ensure directory exists
                 java.nio.file.Files.createDirectories(audioPath.getParent());

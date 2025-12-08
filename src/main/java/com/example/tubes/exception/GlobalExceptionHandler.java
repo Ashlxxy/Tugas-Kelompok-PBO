@@ -13,6 +13,13 @@ public class GlobalExceptionHandler {
         return "error/404";
     }
 
+    @ExceptionHandler(org.springframework.web.multipart.MaxUploadSizeExceededException.class)
+    public String handleMaxSizeException(org.springframework.web.multipart.MaxUploadSizeExceededException exc,
+            org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("error", "File terlalu besar! Maksimum upload adalah 200MB.");
+        return "redirect:/admin/songs";
+    }
+
     @ExceptionHandler(Exception.class)
     public String handleGeneralException(Exception ex, Model model, jakarta.servlet.http.HttpServletRequest request,
             jakarta.servlet.http.HttpServletResponse response) {

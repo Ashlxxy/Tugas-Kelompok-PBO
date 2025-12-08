@@ -80,7 +80,7 @@ public class DataSeeder implements CommandLineRunner {
                                                 "/assets/songs/The Overtrain - New World.wav"),
                                 createSong("Form", "Coral",
                                                 "Sebuah lagu reflektif tentang pencarian jati diri dan proses perubahan dalam hidup. Nuansanya abstrak namun menenangkan, mengajak pendengar untuk memahami bentuk dan arah baru dalam perjalanan mereka.",
-                                                "/assets/img/c1.jpg",
+                                                "/assets/img/coral-form.png",
                                                 "/assets/songs/coral_form.wav"));
 
                 List<Song> existingSongs = songRepository.findAll();

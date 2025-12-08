@@ -34,16 +34,27 @@
                                                         </button>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <button class="btn btn-outline-accent">
+                                                        <a href="${pageContext.request.contextPath}/login"
+                                                            class="btn btn-outline-accent">
                                                             <i class="bi bi-heart"></i> ${song.likes}
-                                                        </button>
+                                                        </a>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </form>
-                                            <button class="btn btn-outline-accent" data-bs-toggle="modal"
-                                                data-bs-target="#playlistModal">
-                                                <i class="bi bi-plus-lg"></i> Playlist
-                                            </button>
+                                            <c:choose>
+                                                <c:when test="${not empty sessionScope.user}">
+                                                    <button class="btn btn-outline-accent" data-bs-toggle="modal"
+                                                        data-bs-target="#playlistModal">
+                                                        <i class="bi bi-plus-lg"></i> Playlist
+                                                    </button>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="${pageContext.request.contextPath}/login"
+                                                        class="btn btn-outline-accent">
+                                                        <i class="bi bi-plus-lg"></i> Playlist
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
 
@@ -71,15 +82,7 @@
                     <div class="col-lg-10">
                         <h4 class="mb-3">Komentar</h4>
 
-                        <c:if test="${not empty sessionScope.success}">
-                            <div class="alert bg-dark-800 border-success text-success mb-4 alert-dismissible fade show"
-                                role="alert">
-                                <i class="bi bi-check-circle-fill me-2"></i> ${sessionScope.success}
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                            <c:remove var="success" scope="session" />
-                        </c:if>
+
 
                         <c:choose>
                             <c:when test="${not empty sessionScope.user}">
@@ -126,14 +129,7 @@
                         </div>
                         <div class="modal-body">
                             <c:choose>
-                                <c:when test="${empty sessionScope.user}">
-                                    <div class="text-center py-4">
-                                        <i class="bi bi-lock display-4 text-dark-300 mb-3 d-block"></i>
-                                        <p class="text-dark-200 mb-3">Login untuk menambahkan lagu ke playlist.</p>
-                                        <a href="${pageContext.request.contextPath}/login" class="btn btn-accent">Login
-                                            Sekarang</a>
-                                    </div>
-                                </c:when>
+
                                 <c:when test="${empty userPlaylists}">
                                     <div class="text-center py-4">
                                         <i class="bi bi-music-player display-4 text-dark-300 mb-3 d-block"></i>
