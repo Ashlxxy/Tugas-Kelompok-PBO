@@ -18,7 +18,7 @@ public class UserService {
             throw new RuntimeException("Email sudah terdaftar");
         }
         if (user.getUsername() == null || user.getUsername().isEmpty()) {
-            // Generate username from email (part before @)
+
             String email = user.getEmail();
             if (email != null && email.contains("@")) {
                 user.setUsername(email.split("@")[0]);
@@ -26,7 +26,7 @@ public class UserService {
                 user.setUsername(user.getName().replaceAll("\\s+", "").toLowerCase());
             }
         }
-        // In a real app, password should be hashed here
+
         return userRepository.save(user);
     }
 

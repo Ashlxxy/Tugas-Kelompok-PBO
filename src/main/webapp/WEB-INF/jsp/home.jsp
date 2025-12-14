@@ -40,7 +40,7 @@
             <section id="popular" class="mt-4 fade-in" style="animation-delay: 0.4s; scroll-margin-top: 100px;">
                 <div class="d-flex justify-content-between align-items-end mb-2">
                     <h3 class="mb-0">Paling Populer</h3>
-                    <small class="text-dark-300">Berdasarkan like + pemutaran</small>
+                    <small class="text-dark-300 fst-italic">Berdasarkan like + pemutaran</small>
                 </div>
                 <div class="row g-3">
                     <c:choose>
@@ -144,8 +144,7 @@
                                 this.innerHTML = 'Lihat Lebih Sedikit <i class="bi bi-chevron-up ms-1"></i>';
                             } else {
                                 this.innerHTML = 'Lihat Selengkapnya <i class="bi bi-chevron-down ms-1"></i>';
-                                // Optional: Scroll back to top of section if needed, but might be jarring
-                                // document.getElementById('descriptions').scrollIntoView({ behavior: 'smooth' });
+
                             }
                         });
                     </script>
@@ -159,7 +158,7 @@
             <c:set var="topSong" value="${songs[0]}" />
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
-                    // Give Player.init a moment to restore state
+
                     setTimeout(() => {
                         if (!localStorage.getItem('queue') || JSON.parse(localStorage.getItem('queue')).length === 0) {
                             const defaultSong = {
@@ -170,7 +169,7 @@
                                 filePath: '${pageContext.request.contextPath}${topSong.filePath}'
                             };
                             console.log("Seeding default song:", defaultSong.title);
-                            Player.playContext([defaultSong], 0, false); // false = do not auto-play
+                            Player.playContext([defaultSong], 0, false);
                         }
                     }, 100);
                 });

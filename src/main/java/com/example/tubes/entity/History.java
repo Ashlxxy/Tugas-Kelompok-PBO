@@ -26,7 +26,6 @@ public class History extends BaseEntity {
         super.onCreate();
     }
 
-    // Getters and Setters
     public User getUser() {
         return user;
     }

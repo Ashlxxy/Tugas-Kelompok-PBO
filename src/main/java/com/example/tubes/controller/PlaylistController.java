@@ -58,7 +58,7 @@ public class PlaylistController {
     @GetMapping("/{id}")
     public String show(@PathVariable Long id, Model model) {
         model.addAttribute("playlist", playlistService.getPlaylistById(id).orElse(null));
-        model.addAttribute("allSongs", songService.getAllSongs()); // For Add Song modal
+        model.addAttribute("allSongs", songService.getAllSongs());
         return "playlists/show";
     }
 
@@ -68,9 +68,7 @@ public class PlaylistController {
         if (user == null) {
             return "redirect:/login";
         }
-        // Verify ownership? For now assume user can only add to their own playlists if
-        // we checked that in the UI
-        // Ideally we should check if playlist belongs to user here
+
         playlistService.addSongToPlaylist(id, songId);
         session.setAttribute("success", "Lagu ditambahkan ke playlist!");
         return "redirect:/playlists/" + id;
