@@ -31,10 +31,10 @@ public class DataSeeder implements CommandLineRunner {
                         User admin = userRepository.findByEmail("admin@example.com").orElse(new User());
                         admin.setUsername("Admin User");
                         admin.setEmail("admin@example.com");
-                        admin.setPassword("password"); // Reset password to ensure access
+                        admin.setPassword("password");
                         admin.setRole("admin");
                         userRepository.save(admin);
-                        userRepository.flush(); // Force write
+                        userRepository.flush();
                         System.out.println("Admin user updated/created: admin@example.com / password");
 
                         User user = userRepository.findByEmail("user@example.com").orElse(new User());
@@ -43,7 +43,7 @@ public class DataSeeder implements CommandLineRunner {
                         user.setPassword("password");
                         user.setRole("user");
                         userRepository.save(user);
-                        userRepository.flush(); // Force write
+                        userRepository.flush();
                         System.out.println("Regular user updated/created: user@example.com / password");
                 } catch (Exception e) {
                         System.err.println("Error seeding users: " + e.getMessage());
@@ -91,7 +91,6 @@ public class DataSeeder implements CommandLineRunner {
                                         .findFirst()
                                         .orElse(null);
 
-                        // Special handling for renaming "Coral" or "Coral Form" to "Form"
                         if (existingSong == null && songData.getTitle().equalsIgnoreCase("Form")) {
                                 existingSong = existingSongs.stream()
                                                 .filter(s -> s.getTitle().equalsIgnoreCase("Coral")
@@ -101,7 +100,6 @@ public class DataSeeder implements CommandLineRunner {
                         }
 
                         if (existingSong != null) {
-                                // Update existing song
                                 existingSong.setTitle(songData.getTitle());
                                 existingSong.setArtist(songData.getArtist());
                                 existingSong.setFilePath(songData.getFilePath());
@@ -110,12 +108,10 @@ public class DataSeeder implements CommandLineRunner {
                                 songRepository.save(existingSong);
                                 System.out.println("Updated song: " + songData.getTitle());
                         } else {
-                                // Create new song
                                 songRepository.save(songData);
                                 System.out.println("Seeded song: " + songData.getTitle());
                         }
                 }
-                // Cleanup unwanted "Coral Form - Unknown"
                 songRepository.findAll().forEach(s -> {
                         if ("Unknown".equalsIgnoreCase(s.getArtist()) && s.getTitle().contains("Coral")) {
                                 songRepository.delete(s);

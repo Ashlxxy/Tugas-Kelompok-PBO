@@ -143,6 +143,34 @@ classDiagram
         +setMessage(String) void
     }
 
+    class Playable {
+        <<interface>>
+        +play() void
+        +pause() void
+        +next() void
+        +previous() void
+        +repeat() void
+    }
+
+    class PemutarLagu {
+        -String status
+        -int volume
+        -boolean autoplay
+        +play() void
+        +pause() void
+        +next() void
+        +previous() void
+        +repeat() void
+        +getStatus() String
+        +setStatus(String) void
+        +getVolume() int
+        +setVolume(int) void
+        +isAutoplay() boolean
+        +setAutoplay(boolean) void
+    }
+
+    Playable <|.. PemutarLagu
+
     %% Inheritance
     BaseEntity <|-- User
     BaseEntity <|-- Song

@@ -50,18 +50,6 @@ public class SongController {
 
         User user = (User) session.getAttribute("user");
         if (user != null) {
-            // Fetch fresh user data or just IDs to avoid LazyInitializationException
-            // Assuming userService.getLikedSongIds(userId) exists or we fetch it manually
-            // For now, let's try to fetch the user again to ensure session is attached or
-            // use a service method
-            // But better: just pass a set of IDs.
-            // Since we don't have a specific method for IDs yet, let's rely on a safe
-            // service call or just handle it in the view with a safe list
-            // Actually, the safest way without changing Service too much is to fetch the
-            // user with liked songs eagerly if possible,
-            // or just iterate in the controller if the session is still open (which it is).
-            // However, session.getAttribute("user") returns a detached entity.
-            // Let's add a method to UserService to get liked song IDs.
             java.util.Set<Long> likedSongIds = userService.getLikedSongIds(user.getId());
             model.addAttribute("likedSongIds", likedSongIds);
         }

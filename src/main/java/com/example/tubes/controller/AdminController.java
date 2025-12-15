@@ -58,26 +58,21 @@ public class AdminController {
         }
 
         try {
-            // Save Audio
             if (audioFile != null && !audioFile.isEmpty()) {
                 String audioFileName = audioFile.getOriginalFilename();
-                // External directory path from WebConfig
                 java.nio.file.Path audioPath = java.nio.file.Paths.get(
                         "src/main/webapp/assets/songs/",
                         audioFileName);
-                // Ensure directory exists
                 java.nio.file.Files.createDirectories(audioPath.getParent());
                 java.nio.file.Files.copy(audioFile.getInputStream(), audioPath,
                         java.nio.file.StandardCopyOption.REPLACE_EXISTING);
                 song.setFilePath("/assets/songs/" + audioFileName);
             }
 
-            // Save Cover
             if (coverFile != null && !coverFile.isEmpty()) {
                 String coverFileName = coverFile.getOriginalFilename();
                 // Webapp directory
                 java.nio.file.Path coverPath = java.nio.file.Paths.get("src/main/webapp/assets/img/", coverFileName);
-                // Ensure directory exists
                 java.nio.file.Files.createDirectories(coverPath.getParent());
                 java.nio.file.Files.copy(coverFile.getInputStream(), coverPath,
                         java.nio.file.StandardCopyOption.REPLACE_EXISTING);
@@ -109,7 +104,7 @@ public class AdminController {
     public String update(@PathVariable Long id, @ModelAttribute Song song, HttpSession session) {
         if (!isAdmin(session))
             return "redirect:/login";
-        song.setId(id); // Ensure ID is set
+        song.setId(id);
         songService.saveSong(song);
         session.setAttribute("success", "Berhasil memperbarui lagu!");
         return "redirect:/admin/songs";
