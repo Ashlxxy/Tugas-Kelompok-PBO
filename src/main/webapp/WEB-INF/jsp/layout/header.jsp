@@ -13,7 +13,7 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
                 rel="stylesheet">
-            <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
+            <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/img/logo.ico">
             <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
             <style>
                 /* Custom Animations */
