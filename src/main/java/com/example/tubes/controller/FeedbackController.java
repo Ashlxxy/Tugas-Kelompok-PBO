@@ -22,9 +22,6 @@ public class FeedbackController {
         if (user == null) {
             return "redirect:/login";
         }
-        // User can see form, maybe list their own feedback?
-        // Or just a form. Laravel usually shows a form.
-        // Let's check blade first, but for now just return view.
         return "feedback/index";
     }
 
@@ -34,10 +31,6 @@ public class FeedbackController {
         if (user == null) {
             return "redirect:/login";
         }
-        // Feedback entity might not have user relation if it's anonymous, but here we
-        // require login.
-        // Let's check Feedback entity.
-        // Assuming it has name/email/message.
         feedback.setName(user.getUsername());
         feedback.setEmail(user.getEmail());
         feedbackService.saveFeedback(feedback);

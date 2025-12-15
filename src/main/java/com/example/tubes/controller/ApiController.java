@@ -69,12 +69,11 @@ public class ApiController {
         if (song.isPresent()) {
             response.put("success", true);
 
-            // Map Entity to simple DTO to avoid recursion/lazy issues if any
             Map<String, Object> songData = new HashMap<>();
             songData.put("id", song.get().getId());
             songData.put("title", song.get().getTitle());
             songData.put("artist", song.get().getArtist());
-            // Construct absolute or relative paths as needed, assuming getters exist
+
             songData.put("coverPath", song.get().getCoverPath());
             songData.put("filePath", song.get().getFilePath());
 
@@ -104,7 +103,6 @@ public class ApiController {
             if (songOpt.isPresent()) {
                 com.example.tubes.entity.Song song = songOpt.get();
 
-                // Increment Play Count
                 song.setPlays(song.getPlays() + 1);
                 songService.saveSong(song);
 
