@@ -4,6 +4,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 # Build the application, skipping tests to speed up deployment
+ENV MAVEN_OPTS="-Xmx512m"
 RUN mvn clean package -DskipTests
 
 # Run Stage
