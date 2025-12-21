@@ -1,6 +1,6 @@
-# Tubes PBO - Music Player Project
+# Tubes PBO - UKM BAND TELKOM
 
-Proyek ini adalah aplikasi pemutar musik berbasis web yang dibangun sebagai Tugas Besar (Tubes) untuk mata kuliah Pemrograman Berorientasi Objek (PBO). Aplikasi ini awalnya dikonversi dari proyek Laravel ke Spring Boot (Java).
+Proyek ini adalah aplikasi pemutar musik berbasis web yang dibangun sebagai Tugas Besar (Tubes) untuk mata kuliah Pemrograman Berorientasi Objek (PBO). Aplikasi ini menggunakan Spring Boot (Java).
 
 ## 🚀 Fitur Utama
 
