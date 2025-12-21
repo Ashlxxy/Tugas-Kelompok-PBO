@@ -2,7 +2,7 @@
 
 Proyek ini adalah aplikasi pemutar musik berbasis web yang dibangun sebagai Tugas Besar (Tubes) untuk mata kuliah Pemrograman Berorientasi Objek (PBO). Aplikasi ini awalnya dikonversi dari proyek Laravel ke Spring Boot (Java).
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 Aplikasi ini mencakup fitur-fitur berikut:
 *   **Autentikasi Pengguna**: Login dan Registrasi untuk pengguna (User) dan admin.
@@ -13,7 +13,7 @@ Aplikasi ini mencakup fitur-fitur berikut:
 *   **Komentar & Masukan**: Pengguna dapat memberikan komentar pada lagu dan mengirim masukan/laporan.
 *   **Dashboard Admin**: Statistik lagu terpopuler dan manajemen konten.
 
-## 🛠 Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 *   **Bahasa Pemrograman**: Java 17
 *   **Framework**: Spring Boot 3.2.0
@@ -21,14 +21,14 @@ Aplikasi ini mencakup fitur-fitur berikut:
 *   **Frontend**: JSP (JavaServer Pages), JSTL, CSS (Bootstrap/Custom)
 *   **Build Tool**: Maven
 
-## 📋 Persyaratan Sistem
+## Persyaratan Sistem
 
 Sebelum menjalankan proyek, pastikan Anda telah menginstal:
 *   **Java Development Kit (JDK) 17** atau lebih baru.
 *   **Maven** (untuk build dan dependency management).
 *   **MySQL Server**.
 
-## ⚙️ Cara Menjalankan
+## Cara Menjalankan
 
 Ikuti langkah-langkah berikut untuk menjalankan aplikasi:
 
@@ -51,7 +51,7 @@ Ikuti langkah-langkah berikut untuk menjalankan aplikasi:
     Setelah aplikasi berjalan, buka browser dan akses:
     Example URL: `http://localhost:8081`
 
-## 👤 Akun Default (Seeder)
+## Akun Default (Seeder)
 
 Saat aplikasi pertama kali dijalankan, `DataSeeder` akan otomatis membuat akun default berikut:
 
@@ -60,7 +60,7 @@ Saat aplikasi pertama kali dijalankan, `DataSeeder` akan otomatis membuat akun d
 | **Admin** | `admin@example.com` | `password` |
 | **User**  | `user@example.com`  | `password` |
 
-## 📂 Struktur Proyek
+## Struktur Proyek
 
 *   `src/main/java/com/example/tubes`: Source code Java (Controller, Service, Repository, Entity).
 *   `src/main/webapp/WEB-INF/jsp`: File tampilan (View) JSP.
@@ -70,7 +70,7 @@ Saat aplikasi pertama kali dijalankan, `DataSeeder` akan otomatis membuat akun d
 
 Proyek ini adalah aplikasi pemutar musik berbasis web yang dibangun sebagai Tugas Besar (Tubes) untuk mata kuliah Pemrograman Berorientasi Objek (PBO). Aplikasi ini awalnya dikonversi dari proyek Laravel ke Spring Boot (Java).
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 Aplikasi ini mencakup fitur-fitur berikut:
 *   **Autentikasi Pengguna**: Login dan Registrasi untuk pengguna (User) dan admin.
@@ -81,7 +81,7 @@ Aplikasi ini mencakup fitur-fitur berikut:
 *   **Komentar & Masukan**: Pengguna dapat memberikan komentar pada lagu dan mengirim masukan/laporan.
 *   **Dashboard Admin**: Statistik lagu terpopuler dan manajemen konten.
 
-## 🛠 Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 *   **Bahasa Pemrograman**: Java 17
 *   **Framework**: Spring Boot 3.2.0
@@ -89,14 +89,14 @@ Aplikasi ini mencakup fitur-fitur berikut:
 *   **Frontend**: JSP (JavaServer Pages), JSTL, CSS (Bootstrap/Custom)
 *   **Build Tool**: Maven
 
-## 📋 Persyaratan Sistem
+## Persyaratan Sistem
 
 Sebelum menjalankan proyek, pastikan Anda telah menginstal:
 *   **Java Development Kit (JDK) 17** atau lebih baru.
 *   **Maven** (untuk build dan dependency management).
 *   **MySQL Server**.
 
-## ⚙️ Cara Menjalankan
+## Cara Menjalankan
 
 Ikuti langkah-langkah berikut untuk menjalankan aplikasi:
 
@@ -119,7 +119,7 @@ Ikuti langkah-langkah berikut untuk menjalankan aplikasi:
     Setelah aplikasi berjalan, buka browser dan akses:
     Example URL: `http://localhost:8081`
 
-## 👤 Akun Default (Seeder)
+## Akun Default (Seeder)
 
 Saat aplikasi pertama kali dijalankan, `DataSeeder` akan otomatis membuat akun default berikut:
 
@@ -128,7 +128,7 @@ Saat aplikasi pertama kali dijalankan, `DataSeeder` akan otomatis membuat akun d
 | **Admin** | `admin@example.com` | `password` |
 | **User**  | `user@example.com`  | `password` |
 
-## 📂 Struktur Proyek
+## Struktur Proyek
 
 *   `src/main/java/com/example/tubes`: Source code Java (Controller, Service, Repository, Entity).
 *   `src/main/webapp/WEB-INF/jsp`: File tampilan (View) JSP.
