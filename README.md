@@ -64,4 +64,4 @@ Saat aplikasi pertama kali dijalankan, `DataSeeder` akan otomatis membuat akun d
 
 *   `src/main/java/com/example/tubes`: Source code Java (Controller, Service, Repository, Entity).
 *   `src/main/webapp/WEB-INF/jsp`: File tampilan (View) JSP.
-*   `src/main/resources`: Konfigurasi aplikasi dan aset statis (jika ada).
+*   `src/main/resources`: Konfigurasi aplikasi dan aset statis.
