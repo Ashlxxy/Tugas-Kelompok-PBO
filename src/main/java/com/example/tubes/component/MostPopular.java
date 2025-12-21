@@ -17,10 +17,6 @@ public class MostPopular {
 
     public void tampilkanTopLagu() {
         this.daftarPopuler = songRepository.findTop10ByOrderByPlaysDesc();
-        // In a real console app, we might print here.
-        // In a web app, this method might just populate the list or return it.
-        // For compliance with diagram which returns void, we just populate the
-        // attribute.
         System.out.println("Top Songs:");
         for (Song song : daftarPopuler) {
             System.out.println(song.getTitle() + " - " + song.getPlays() + " plays");

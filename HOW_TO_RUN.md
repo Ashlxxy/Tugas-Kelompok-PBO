@@ -54,7 +54,7 @@ Buka terminal (CMD / PowerShell / Terminal) di folder root project ini, lalu jal
 
 Setelah muncul log yang mengatakan aplikasi sudah berjalan (biasanya "Started TubesPboApplication..."), buka browser dan akses:
 
-**http://localhost:8081**
+**http://localhost:8080**
 
 
 ## Option 2: Running with Docker (Recommended)
@@ -69,4 +69,4 @@ Jika teman kamu malas ribet install Java & MySQL satu per satu, gunakan cara ini
     ```
     *(Note: Proses pertama kali akan memakan waktu untuk mendownload dependencies dan membangun aplikasi secara otomatis)*.
 
-Tunggu sampai setup database & aplikasi selesai. Aplikasi akan bisa diakses di **http://localhost:8081**.
+Tunggu sampai setup database & aplikasi selesai. Aplikasi akan bisa diakses di **http://localhost:8081** (sesuai konfigurasi docker-compose).

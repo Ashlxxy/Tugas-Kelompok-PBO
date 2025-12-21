@@ -41,7 +41,6 @@ public class Song extends BaseEntity {
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<History> histories = new HashSet<>();
 
-    // Getters and Setters
     public String getTitle() {
         return title;
     }

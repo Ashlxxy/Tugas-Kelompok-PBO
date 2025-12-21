@@ -9,19 +9,18 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Masuk & Daftar &mdash; UKM Band</title>
                 <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/img/logo.ico">
-                <!-- Bootstrap & Icons -->
+
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
                     rel="stylesheet">
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
                     rel="stylesheet">
 
-                <!-- App Styles -->
+
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-                <!-- Animation Styles -->
+
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth-animated.css">
                 <style>
-                    /* Carousel styling to fit overlay */
                     .carousel,
                     .carousel-inner,
                     .carousel-item {
@@ -33,7 +32,6 @@
                         height: 100%;
                         width: 100%;
                         filter: brightness(0.6);
-                        /* Darken image for text readability */
                     }
 
                     .carousel-caption {
@@ -44,7 +42,6 @@
 
                     .overlay {
                         background: none !important;
-                        /* Override gradient to show carousel */
                         background-color: #121212 !important;
                     }
                 </style>
@@ -52,7 +49,7 @@
 
             <body class="auth-body">
 
-                <!-- Toast Logic using shared utility -->
+
                 <script src="${pageContext.request.contextPath}/js/toast.js"></script>
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
@@ -67,7 +64,7 @@
 
                 <div class="container-auth ${not empty registerError or not empty showRegister ? 'active' : ''}">
 
-                    <!-- Login Form -->
+
                     <div class="form-box Login">
                         <div class="w-100">
                             <div class="text-center mb-4">
@@ -95,11 +92,15 @@
                                 <div class="d-grid mt-4">
                                     <button type="submit" class="btn btn-accent btn-lg">Masuk</button>
                                 </div>
+                                <div class="text-center mt-3">
+                                    <a href="${pageContext.request.contextPath}/" class="text-decoration-none"
+                                        style="color: red;">Kembali ke Beranda</a>
+                                </div>
                             </form>
                         </div>
                     </div>
 
-                    <!-- Register Form -->
+
                     <div class="form-box Register">
                         <div class="w-100">
                             <div class="text-center mb-4">
@@ -139,14 +140,18 @@
                                 <div class="d-grid mt-4">
                                     <button type="submit" class="btn btn-accent btn-lg">Daftar</button>
                                 </div>
+                                <div class="text-center mt-3">
+                                    <a href="${pageContext.request.contextPath}/" class="text-decoration-none"
+                                        style="color: red;">Kembali ke Beranda</a>
+                                </div>
                             </form>
                         </div>
                     </div>
 
-                    <!-- Overlay Container -->
+
                     <div class="overlay-container">
                         <div class="overlay">
-                            <!-- Carousel Background -->
+
                             <div id="authCarousel"
                                 class="carousel slide carousel-fade h-100 w-100 position-absolute top-0 start-0"
                                 data-bs-ride="carousel" style="z-index: -1;">
@@ -174,7 +179,7 @@
                                 </div>
                             </div>
 
-                            <!-- Overlay Panels (Text & Buttons) -->
+
                             <div class="overlay-panel overlay-left">
                                 <h2 class="fw-bold mb-3">Sudah punya akun?</h2>
                                 <p class="mb-4">Masuk kembali untuk mengakses playlist dan lagu favoritmu.</p>
