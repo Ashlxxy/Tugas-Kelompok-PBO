@@ -1,6 +1,6 @@
-# Tubes PBO - Music Player Project
+# Tubes PBO - UKM BAND TELKOM
 
-Proyek ini adalah aplikasi pemutar musik berbasis web yang dibangun sebagai Tugas Besar (Tubes) untuk mata kuliah Pemrograman Berorientasi Objek (PBO). Aplikasi ini awalnya dikonversi dari proyek Laravel ke Spring Boot (Java).
+Proyek ini adalah aplikasi pemutar musik berbasis web yang dibangun sebagai Tugas Besar (Tubes) untuk mata kuliah Pemrograman Berorientasi Objek (PBO). Aplikasi ini menggunakan Spring Boot (Java).
 
 ## 🚀 Fitur Utama
 
@@ -64,4 +64,4 @@ Saat aplikasi pertama kali dijalankan, `DataSeeder` akan otomatis membuat akun d
 
 *   `src/main/java/com/example/tubes`: Source code Java (Controller, Service, Repository, Entity).
 *   `src/main/webapp/WEB-INF/jsp`: File tampilan (View) JSP.
-*   `src/main/resources`: Konfigurasi aplikasi dan aset statis (jika ada).
+*   `src/main/resources`: Konfigurasi aplikasi dan aset statis.
