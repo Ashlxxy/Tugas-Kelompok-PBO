@@ -70,7 +70,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>com.example.tubes.TubesPboApplication</mainClass>
-                    <classifier>exec</classifier>
+
 				</configuration>
 			</plugin>
             <plugin>
