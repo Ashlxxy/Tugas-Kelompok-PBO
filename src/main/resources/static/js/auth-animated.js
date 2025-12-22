@@ -1,15 +1,17 @@
 const container = document.querySelector('.container-auth');
-const registerBtn = document.querySelector('.SignUpLink');
-const loginBtn = document.querySelector('.SignInLink');
+const registerBtns = document.querySelectorAll('.SignUpLink');
+const loginBtns = document.querySelectorAll('.SignInLink');
 
-if (registerBtn && container) {
-    registerBtn.addEventListener('click', () => {
-        container.classList.add('active');
+if (container) {
+    registerBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            container.classList.add('active');
+        });
     });
-}
 
-if (loginBtn && container) {
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove('active');
+    loginBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            container.classList.remove('active');
+        });
     });
 }

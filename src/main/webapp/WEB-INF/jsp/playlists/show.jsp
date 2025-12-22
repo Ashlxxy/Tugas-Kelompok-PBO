@@ -28,18 +28,18 @@
                 <div class="d-flex align-items-center">
                     <button type="button" class="btn btn-outline-accent me-2" data-bs-toggle="modal"
                         data-bs-target="#addSongModal">
-                        <i class="bi bi-plus-lg me-1"></i>Tambah Lagu
+                        <i class="bi bi-plus-lg"></i><span class="d-none d-md-inline ms-1">Tambah Lagu</span>
                     </button>
                     <c:if test="${not empty playlist.songs}">
                         <button class="btn btn-accent me-2"
                             onclick="Player.playAll(document.querySelector('.list-group'))">
-                            <i class="bi bi-play-fill me-1"></i>Putar Playlist
+                            <i class="bi bi-play-fill"></i><span class="d-none d-md-inline ms-1">Putar Playlist</span>
                         </button>
                     </c:if>
                     <form id="deletePlaylistForm"
                         action="${pageContext.request.contextPath}/playlists/${playlist.id}/delete" method="POST">
                         <button type="button" class="btn btn-danger" onclick="showDeletePlaylistModal()">
-                            <i class="bi bi-trash me-1"></i>Hapus Playlist
+                            <i class="bi bi-trash"></i><span class="d-none d-md-inline ms-1">Hapus Playlist</span>
                         </button>
                     </form>
                 </div>

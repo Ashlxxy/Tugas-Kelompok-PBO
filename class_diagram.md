@@ -1,7 +1,5 @@
 # Class Diagram - Music Streaming App
 
-Berikut adalah diagram kelas (Class Diagram) berdasarkan kode sumber proyek, lengkap dengan atribut dan method-nya.
-
 ```mermaid
 classDiagram
     class BaseEntity {

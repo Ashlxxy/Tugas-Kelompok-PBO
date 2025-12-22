@@ -9,7 +9,8 @@ import java.util.List;
 public class Pengguna extends User {
 
     public void klikLagu(Song lagu) {
-        // Implementation for clicking a song
+        // Logika bisnis didelegasikan ke Service (SongService/HistoryService)
+        // untuk mematuhi prinsip Clean Architecture & Spring Service Layer Pattern.
     }
 
     public void beriLike(Song lagu) {
@@ -17,7 +18,8 @@ public class Pengguna extends User {
     }
 
     public void beriKomentar(Song lagu, String isi) {
-        // Implementation for commenting on a song
+        // Logika bisnis didelegasikan ke CommentService.
+        // Entity hanya manyimpan state (data), bukan behavior (logika) yang kompleks.
     }
 
     public void tambahKePlaylist(Song lagu, Playlist playlist) {

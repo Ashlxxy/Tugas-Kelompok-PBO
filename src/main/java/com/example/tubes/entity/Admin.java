@@ -8,7 +8,8 @@ import jakarta.persistence.Entity;
 public class Admin extends User {
 
     public void kelolaLagu() {
-        // Implementation for managing songs
+        // Logika bisnis didelegasikan ke SongService (Admin CRUD).
+        // Sesuai dengan Architecture Spring Boot.
     }
 
     public void moderasiKomentar() {

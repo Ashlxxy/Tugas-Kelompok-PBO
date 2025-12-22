@@ -20,6 +20,9 @@ public class DataSeeder implements CommandLineRunner {
         @Autowired
         private UserRepository userRepository;
 
+        @Autowired
+        private org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
+
         @Override
         public void run(String... args) throws Exception {
                 seedUsers();
@@ -31,7 +34,8 @@ public class DataSeeder implements CommandLineRunner {
                         User admin = userRepository.findByEmail("admin@example.com").orElse(new User());
                         admin.setUsername("Admin User");
                         admin.setEmail("admin@example.com");
-                        admin.setPassword("password");
+                        // Hash password
+                        admin.setPassword(passwordEncoder.encode("password"));
                         admin.setRole("admin");
                         userRepository.save(admin);
                         userRepository.flush();
@@ -40,7 +44,8 @@ public class DataSeeder implements CommandLineRunner {
                         User user = userRepository.findByEmail("user@example.com").orElse(new User());
                         user.setUsername("Regular User");
                         user.setEmail("user@example.com");
-                        user.setPassword("password");
+                        // Hash password
+                        user.setPassword(passwordEncoder.encode("password"));
                         user.setRole("user");
                         userRepository.save(user);
                         userRepository.flush();

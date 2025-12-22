@@ -97,6 +97,14 @@ const Player = {
         const playBtn = document.getElementById('play-pause-btn');
         if (playBtn) playBtn.addEventListener('click', () => this.togglePlay());
 
+        const playBtnMobile = document.getElementById('play-pause-mobile-btn');
+        if (playBtnMobile) playBtnMobile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.togglePlay();
+        });
+
+
+
         const nextBtn = document.getElementById('btn-next');
         if (nextBtn) nextBtn.addEventListener('click', () => this.next());
 
@@ -158,6 +166,20 @@ const Player = {
         const expandBtn = document.getElementById('btn-expand');
         const collapseBtn = document.getElementById('btn-collapse');
         const expandedPlayer = document.getElementById('player-expanded');
+
+        // Mobile: Click bar to expand
+        const playerBar = document.getElementById('player-bar');
+        if (playerBar) {
+            playerBar.addEventListener('click', (e) => {
+                if (window.innerWidth < 768) {
+                    if (!e.target.closest('button') && !e.target.closest('input')) {
+                        if (expandBtn) expandBtn.click();
+                    }
+                }
+            });
+        }
+
+
 
         if (expandBtn && expandedPlayer) {
             expandBtn.addEventListener('click', () => {
@@ -301,7 +323,7 @@ const Player = {
                         this.isPlaying = true;
                         this.updatePlayButton();
                         // Record History
-                        fetch('/api/history/record?songId=' + song.id, { method: 'POST' })
+                        fetch(contextPath + '/api/history/record?songId=' + song.id, { method: 'POST' })
                             .catch(e => console.error("Failed to record history", e));
                     })
                     .catch(e => {
@@ -366,7 +388,7 @@ const Player = {
     },
 
     checkLikeStatus(songId) {
-        fetch(`/api/songs/${songId}/liked`)
+        fetch(`${contextPath}/api/songs/${songId}/liked`)
             .then(res => res.json())
             .then(data => {
                 this.updateLikeButton(data.isLiked);
@@ -377,10 +399,10 @@ const Player = {
     toggleLike() {
         if (!this.queue[this.currentIndex]) return;
         const songId = this.queue[this.currentIndex].id;
-        fetch(`/api/songs/${songId}/like`, { method: 'POST' })
+        fetch(`${contextPath}/api/songs/${songId}/like`, { method: 'POST' })
             .then(res => {
                 if (res.status === 401) {
-                    window.location.href = '/login';
+                    window.location.href = contextPath + '/login';
                     return;
                 }
                 return res.json();
@@ -582,8 +604,9 @@ const Player = {
     updatePlayButton() {
         const btn = document.getElementById('play-pause-btn');
         const btnEx = document.getElementById('play-pause-btn-expanded');
+        const btnMobile = document.getElementById('play-pause-mobile-btn');
 
-        [btn, btnEx].forEach(b => {
+        [btn, btnEx, btnMobile].forEach(b => {
             if (b) {
                 const icon = b.querySelector('i');
                 if (this.isPlaying) {

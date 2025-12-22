@@ -96,6 +96,12 @@
                                     <a href="${pageContext.request.contextPath}/" class="text-decoration-none"
                                         style="color: red;">Kembali ke Beranda</a>
                                 </div>
+                                <div class="text-center mt-3 d-md-none">
+                                    <p class="small text-dark-300 mb-0">Belum punya akun?
+                                        <a href="#" class="text-accent text-decoration-none SignUpLink">Daftar
+                                            sekarang</a>
+                                    </p>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -143,6 +149,12 @@
                                 <div class="text-center mt-3">
                                     <a href="${pageContext.request.contextPath}/" class="text-decoration-none"
                                         style="color: red;">Kembali ke Beranda</a>
+                                </div>
+                                <div class="text-center mt-3 d-md-none">
+                                    <p class="small text-dark-300 mb-0">Sudah punya akun?
+                                        <a href="#" class="text-accent text-decoration-none SignInLink">Masuk di
+                                            sini</a>
+                                    </p>
                                 </div>
                             </form>
                         </div>

@@ -6,13 +6,53 @@
         <c:set var="reqUrl" value="${pageContext.request.requestURI}" />
         <c:set var="isAuthPage" value="${fn:contains(reqUrl, '/login') or fn:contains(reqUrl, '/register')}" />
 
-        <c:if test="${not isAuthPage}">
 
+
+        <style>
+            /* Base Mobile View */
+            .desktop-view {
+                display: none !important;
+            }
+
+            .mobile-view {
+                display: flex !important;
+            }
+
+            .player-section-left,
+            .player-section-right {
+                width: auto;
+                flex-grow: 1;
+            }
+
+            /* Desktop View Breakpoint */
+            @media (min-width: 768px) {
+                .desktop-view {
+                    display: flex !important;
+                }
+
+                .mobile-view {
+                    display: none !important;
+                }
+
+                .player-section-left {
+                    width: 30% !important;
+                    flex-grow: 0;
+                    min-width: 180px;
+                }
+
+                .player-section-right {
+                    width: 30% !important;
+                    flex-grow: 0;
+                }
+            }
+        </style>
+
+        <c:if test="${not isAuthPage}">
             <div id="player-bar"
-                class="fixed-bottom bg-dark border-top border-secondary p-3 d-flex flex-nowrap align-items-center text-white"
+                class="fixed-bottom bg-dark border-top border-secondary p-3 d-flex flex-nowrap align-items-center justify-content-between text-white"
                 style="z-index: 1050; background-color: #181818 !important;">
 
-                <div class="d-flex align-items-center" style="width: 30%; min-width: 180px;">
+                <div class="d-flex align-items-center player-section-left">
                     <img id="player-cover" src="" alt="Cover" class="rounded me-3 bg-secondary"
                         style="width: 56px; height: 56px; object-fit: cover;">
                     <div class="d-flex flex-column overflow-hidden me-3">
@@ -21,11 +61,12 @@
                         <div id="player-artist" class="small text-secondary text-truncate" style="font-size: 0.75rem;">
                             Artis</div>
                     </div>
-                    <button class="btn btn-link link-light p-0 text-secondary"><i class="bi bi-heart"></i></button>
+                    <button class="btn btn-link link-light p-0 text-secondary desktop-view"><i
+                            class="bi bi-heart"></i></button>
                 </div>
 
 
-                <div class="d-flex flex-column align-items-center justify-content-center"
+                <div class="desktop-view flex-column align-items-center justify-content-center"
                     style="width: 40%; max-width: 600px;">
                     <div class="d-flex align-items-center gap-3 mb-1">
                         <button id="btn-shuffle" class="btn btn-link link-secondary p-0 fs-5"><i
@@ -54,12 +95,21 @@
                 </div>
 
 
-                <div class="d-flex align-items-center justify-content-end gap-2" style="width: 30%;">
-                    <i class="bi bi-volume-up text-secondary"></i>
-                    <input type="range" id="volume" class="form-range" style="width: 100px;" min="0" max="1" step="0.1"
-                        value="1">
-                    <button id="btn-expand" class="btn btn-link link-secondary p-0"><i
-                            class="bi bi-arrows-angle-expand"></i></button>
+                <div class="d-flex align-items-center justify-content-end gap-2 player-section-right">
+
+                    <!-- Mobile Play Button -->
+                    <button id="play-pause-mobile-btn" class="btn btn-link text-white p-0 mobile-view fs-2 ms-auto">
+                        <i class="bi bi-play-fill"></i>
+                    </button>
+
+                    <!-- Desktop Controls -->
+                    <div class="desktop-view align-items-center gap-2 w-100 justify-content-end">
+                        <i class="bi bi-volume-up text-secondary"></i>
+                        <input type="range" id="volume" class="form-range" style="width: 100px;" min="0" max="1"
+                            step="0.1" value="1">
+                        <button id="btn-expand" class="btn btn-link link-secondary p-0"><i
+                                class="bi bi-arrows-angle-expand"></i></button>
+                    </div>
                 </div>
             </div>
 
@@ -83,7 +133,7 @@
                 </div>
 
 
-                <div class="container d-flex flex-column align-items-center" style="max-width: 500px;">
+                <div class="container d-flex flex-column align-items-center px-4" style="max-width: 500px;">
 
                     <div class="mb-5 position-relative shadow-lg" style="width: 300px; height: 300px;">
                         <img id="player-cover-expanded" src="" alt="Cover"
@@ -132,6 +182,9 @@
                 </div>
             </div>
 
+            <script>
+                const contextPath = '${pageContext.request.contextPath}';
+            </script>
             <link rel="stylesheet" href="${pageContext.request.contextPath}/css/player.css?v=16">
             <script src="${pageContext.request.contextPath}/js/player.js?v=16"></script>
         </c:if>
